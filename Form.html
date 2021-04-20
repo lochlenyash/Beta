@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+
+<head>
+
+<meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <link rel="stylesheet" href="css/font.css">
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" href="/css/message.css">
+		
+					
+        <link rel="stylesheet" href="css/form.css">
+		<link rel="stylesheet" href="css/tacbox.css">
+		
+<script>
+function submitToAPI(e) {
+       e.preventDefault();
+//       var URL = "API Gateway";
+
+	   var centers = document.getElementById("centers-input").value;
+	   var time = document.getElementById("time-input").value;
+	   var pps = document.getElementById("pps-input").value;
+	   var name = document.getElementById("name-input").value;
+	   var email = document.getElementById("email-input").value;
+       var phone = document.getElementById("phone-input").value;
+	   var address = document.getElementById("address-input").value;
+	      
+	   
+	   if (centers=="" || time=="" || pps=="" || name=="" || email=="" || phone=="" || address=="")
+        {
+            alert("You must complete all fields to get an appointment");
+            return false;
+        }
+		
+		<!-- nameRE = /^[A-Z]{1}[a-z]{2,20}[ ]{1}[A-Z]{1}[a-z]{2,20}/;
+		<!-- if(!nameRE.test(name)) {
+		<!-- 	alert("Name entered, is not valid");
+		<!-- 		return false;
+		<!-- } -->
+		
+		<!-- phoneRE = /^([0|\+[0-9]{1,5})?([7-9][0-9]{9})$/;
+		<!-- if(!phoneRE.test(phone)) {
+		<!-- 		alert("Phone number entered, is not valid");
+		<!-- 		return false;
+        <!--     }
+		
+		emailRE = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+		if(!emailRE.test(email)) {
+			alert("Email Address entered, is not valid");
+				return false;
+		}
+       var data = {
+          centers : centers,
+		  time : time,
+		  pps : pps,
+		  name : name,
+		  email : email,
+		  phone : phone,
+		  address : address
+        };
+
+		var xmlhttp = new XMLHttpRequest();
+		xmlhttp.open("POST", "https://zrdwb487pk.execute-api.eu-west-1.amazonaws.com/prod/contact");
+		xmlhttp.setRequestHeader("Content-Type", "application/json");
+		xmlhttp.send(JSON.stringify(data));
+		xmlhttp.onreadystatechange = function() {
+		if (xmlhttp.readyState === 4) {
+			var response = JSON.parse(xmlhttp.responseText);
+			if (xmlhttp.status === 200 ) {
+				console.log('successful');
+				document.getElementById("contact-form").innerHTML = "<h1>Please check you email/mobile for appointment confirmation</h1>";
+		    } else {
+			    console.log('failed');
+			}
+		}
+	}
+	
+	document.getElementById('contact-form').reset();
+	  
+	} 
+</script>
+		
+</head>
+
+<header>
+          <img src="images/covax.jpg">
+        </header> 
+<body>
+<form id="contact-form" method="post">
+
+    <!-- <div class="form-group"> -->
+    <h2 class="heading">Covid19 Vaccine Booking Form</h2>
+
+		<h3 class="heading">Choose your nearest vaccine center</h3>
+
+		<!--  <form action="/action_page.php">-->
+		<select id="centers-input" name="centers">
+		<option value="Cork1">Cork - City Hall</option>
+		<option value="cork2">Cork - Páirc Uí Chaoimh</option>
+		<option value="Waterford1">Waterford - WIT Arena</option>
+		<option value="Dublin1">Dublin - Aviva Stadium</option>
+		<option value="Limerick1">Limerick - Radisson Hotel</option>
+		<option value="Galway1">Galway - Racecourse</option>
+		</select>
+		<!--<input type="submit"> -->
+		<!-- </form> -->
+	
+	<!-- <div class="form-group"> -->
+    <h3 class="heading">Book Your Appointment</h3>
+   
+	<label for="time-input">Choose a time for your appointment:</label>
+
+       <input type="datetime-local" id="time-input"
+       name="time" value="2021-04-06T19:30"
+       min="2021-04-01T00:00" max="2022-06-07T00:00">		
+
+	<h3 class="heading">Contact Details</h3>
+	<p> Submit your contact details for text/email confirmation of your appointment </p>
+	
+	<input type="text" style="height:35px;" id="pps-input" placeholder="PPS" class="form-control" style="width:100%;" /><label for="comments"></label><br/>
+	<!-- <div class="form-control">
+      <input type="text" id="pps" class="form-control" name="pps">
+      <label for="pps">PPS</label>
+    </div> -->
+	
+	<input type="text" style="height:35px;" id="name-input" placeholder="Name" class="form-control" style="width:100%;" /><label for="comments"></label><br/>
+    <!-- <div class="controls">
+      <input type="text" id="name" class="floatLabel" name="name">
+      <label for="name">Name</label>
+    </div> -->
+	
+	<input type="text" style="height:35px;" id="email-input" placeholder="Email" class="form-control" style="width:100%;" /><label for="comments"></label><br/>
+    <!-- <div class="controls">
+      <input type="text" id="email" class="floatLabel" name="email">
+      <label for="email">Email</label>
+    </div>       --> 
+	
+	<input type="text" style="height:35px;" id="phone-input" placeholder="Mobile number" class="form-control" style="width:100%;" /><label for="comments"></label><br/>
+    <!-- <div class="controls">
+      <input type="tel" id="phone" class="floatLabel" name="phone">
+      <label for="phone">Mobile</label>
+    </div> -->
+	
+
+	<div class="controls">
+          <textarea name="address" class="floatLabel" id="address-input"></textarea>
+          <label for="comments">Address</label>
+          </div>
+	
+	<h2 class="heading">Terms and conditions</h2>
+     <p> Please read and clarify the terms and conditions </p>
+	 <p> Appointments are based on age and risk grouping.  If you book a slot outside of your predefined time you will be refused a vaccine </p>
+
+<div class="tacbox">
+  <input id="checkbox" type="checkbox" />
+  <label for="checkbox"> I agree to these <a href="#">Terms and Conditions</a>.</label>
+  
+      <div class="g-recaptcha" data-sitekey="6Lc7cVMUAAAAAM1yxf64wrmO8gvi8A1oQ_ead1ys" class="form-control" style="width:100%;"></div>
+      <button type="button" onClick="submitToAPI(event)" class="btn btn-lg" style="margin-top:20px;">Submit</button>
+</form>
+<script src="js/form.js"></script>
+
+</body>
+</html>
